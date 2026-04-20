@@ -1,13 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>中央大学 学生証画像ジェネレータ - v76nl</title>
-        <meta
-            name="description"
-            content="Generate an English version of a Japanese student ID card and export it as an image."
-        />
+        <meta name="description" content="中央大学の英語版学生証画像を生成するツール" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -22,156 +19,211 @@
                 <h1 class="page-title">中央大学 学生証画像ジェネレータ</h1>
             </header>
 
-            <main class="main-content">
-                <!-- Card Preview -->
-                <section class="card-section" aria-label="Card preview">
-                    <div class="card-scaling-wrapper" id="card-scaling-wrapper">
-                    <div class="card-container" id="id-card">
-                        <!-- University Name (fixed) -->
-                        <div class="card-university-block">
-                            <div class="university-emblem" aria-hidden="true">C</div>
-                            <div class="university-name">Chuo University</div>
-                            <div class="card-type-label">STUDENT ID CARD</div>
+            <main class="app-layout">
+                <!-- 左: 入力フォーム -->
+                <section class="form-panel" aria-label="入力フォーム">
+                    <div class="form-panel-header">入力フォーム</div>
+
+                    <div class="form-section">
+                        <h2 class="form-section-title">所属</h2>
+
+                        <div class="form-group">
+                            <label class="form-label" for="input-faculty">学部</label>
+                            <div class="form-select-wrapper">
+                                <select class="form-select" id="input-faculty">
+                                    <option value="">選択してください</option>
+                                    <option value="法学部">法学部</option>
+                                    <option value="経済学部">経済学部</option>
+                                    <option value="商学部">商学部</option>
+                                    <option value="理工学部">理工学部</option>
+                                    <option value="文学部">文学部</option>
+                                    <option value="総合政策学部">総合政策学部</option>
+                                    <option value="国際経営学部">国際経営学部</option>
+                                    <option value="国際情報学部">国際情報学部</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <!-- Red divider line -->
-                        <div class="card-divider"></div>
-
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <!-- Left: student info fields -->
-                            <div class="card-left">
-                                <div class="field-group">
-                                    <span class="field-label">Faculty</span>
-                                    <div
-                                        id="faculty-name"
-                                        class="field-value editable"
-                                        contenteditable="true"
-                                        data-placeholder="学部名（例: School of Science and Technology）"
-                                        spellcheck="false"
-                                    ></div>
-                                </div>
-
-                                <div class="field-group">
-                                    <span class="field-label">Department</span>
-                                    <div
-                                        id="department-name"
-                                        class="field-value editable"
-                                        contenteditable="true"
-                                        data-placeholder="学科名（例: Dept. of Information Engineering）"
-                                        spellcheck="false"
-                                    ></div>
-                                </div>
-
-                                <div class="field-group">
-                                    <span class="field-label">Student ID</span>
-                                    <div
-                                        id="student-id"
-                                        class="field-value editable field-mono"
-                                        contenteditable="true"
-                                        data-placeholder="学籍番号（例: 2024001234）"
-                                        spellcheck="false"
-                                    ></div>
-                                </div>
-
-                                <div class="field-group">
-                                    <span class="field-label">Name</span>
-                                    <div
-                                        id="student-name"
-                                        class="field-value editable field-name"
-                                        contenteditable="true"
-                                        data-placeholder="氏名（例: YAMADA Taro）"
-                                        spellcheck="false"
-                                    ></div>
-                                </div>
-
-                                <div class="field-group">
-                                    <span class="field-label"
-                                        >Date of Birth</span
-                                    >
-                                    <div
-                                        id="dob"
-                                        class="field-value editable field-mono"
-                                        contenteditable="true"
-                                        data-placeholder="生年月日（例: 2005 / 04 / 01）"
-                                        spellcheck="false"
-                                    ></div>
-                                </div>
-                            </div>
-
-                            <!-- Right: photo + dates -->
-                            <div class="card-right">
-                                <div class="photo-area" aria-label="Photo area">
-                                    <svg
-                                        class="face-silhouette"
-                                        viewBox="0 0 100 130"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            fill="rgba(148,146,172,0.48)"
-                                            d="M50 4 C33 4 20 17 20 35 C20 53 33 66 50 66 C67 66 80 53 80 35 C80 17 67 4 50 4 Z M50 72 C24 72 2 83 2 100 L2 126 L98 126 L98 100 C98 83 76 72 50 72 Z"
-                                        />
-                                    </svg>
-                                </div>
-
-                                <div class="date-group">
-                                    <div
-                                        class="field-group field-group--compact"
-                                    >
-                                        <span class="field-label"
-                                            >Enrollment Date</span
-                                        >
-                                        <div
-                                            id="enrollment-date"
-                                            class="field-value editable field-mono"
-                                            contenteditable="true"
-                                            data-placeholder="入学年月日（例: 2024 / 04 / 01）"
-                                            spellcheck="false"
-                                        ></div>
-                                    </div>
-
-                                    <div
-                                        class="field-group field-group--compact"
-                                    >
-                                        <span class="field-label"
-                                            >Valid Until</span
-                                        >
-                                        <div
-                                            id="valid-until"
-                                            class="field-value editable field-mono"
-                                            contenteditable="true"
-                                            data-placeholder="有効期限（例: 2028 / 03 / 31）"
-                                            spellcheck="false"
-                                        ></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label class="form-label" for="input-department">学科</label>
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="input-department"
+                                placeholder="例: Dept. of Computer Science"
+                            />
                         </div>
                     </div>
+
+                    <div class="form-section">
+                        <h2 class="form-section-title">個人情報</h2>
+
+                        <div class="form-group">
+                            <label class="form-label" for="input-student-id">学籍番号</label>
+                            <input
+                                class="form-input form-input--mono"
+                                type="text"
+                                id="input-student-id"
+                                placeholder="例: 2024001234"
+                                maxlength="20"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="input-name">氏名（英語表記）</label>
+                            <p class="form-hint">姓をすべて大文字、名を頭文字のみ大文字で</p>
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="input-name"
+                                placeholder="例: YAMADA Taro"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="input-dob">生年月日</label>
+                            <input class="form-input" type="date" id="input-dob" />
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2 class="form-section-title">在籍情報</h2>
+
+                        <div class="form-group">
+                            <label class="form-label" for="input-enrollment">入学年月日</label>
+                            <input class="form-input" type="date" id="input-enrollment" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="input-valid-until">有効期限</label>
+                            <input class="form-input" type="date" id="input-valid-until" />
+                        </div>
                     </div>
                 </section>
 
-                <!-- Export button -->
-                <div class="export-area">
-                    <button id="export-btn" class="export-btn" type="button">
-                        <svg
-                            class="btn-icon"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                            />
-                            <polyline points="7 10 12 15 17 10" />
-                            <line x1="12" y1="15" x2="12" y2="3" />
-                        </svg>
-                        画像をダウンロード
-                    </button>
-                </div>
+                <!-- 右: カードプレビュー + ダウンロード -->
+                <section class="preview-panel" aria-label="プレビュー">
+                    <div class="card-scaling-wrapper" id="card-scaling-wrapper">
+                        <div class="card-container" id="id-card">
+                            <!-- University Name (fixed) -->
+                            <div class="card-university-block">
+                                <div class="university-emblem" aria-hidden="true">C</div>
+                                <div class="university-name">Chuo University</div>
+                                <div class="card-type-label">STUDENT ID CARD</div>
+                            </div>
+
+                            <!-- Red divider line -->
+                            <div class="card-divider"></div>
+
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <!-- Left: student info fields -->
+                                <div class="card-left">
+                                    <div class="field-group">
+                                        <span class="field-label">Faculty</span>
+                                        <div
+                                            id="card-faculty"
+                                            class="field-value is-empty"
+                                            data-placeholder="学部名"
+                                        ></div>
+                                    </div>
+
+                                    <div class="field-group">
+                                        <span class="field-label">Department</span>
+                                        <div
+                                            id="card-department"
+                                            class="field-value is-empty"
+                                            data-placeholder="学科名"
+                                        ></div>
+                                    </div>
+
+                                    <div class="field-group">
+                                        <span class="field-label">Student ID</span>
+                                        <div
+                                            id="card-student-id"
+                                            class="field-value field-mono is-empty"
+                                            data-placeholder="学籍番号"
+                                        ></div>
+                                    </div>
+
+                                    <div class="field-group">
+                                        <span class="field-label">Name</span>
+                                        <div
+                                            id="card-name"
+                                            class="field-value field-name is-empty"
+                                            data-placeholder="氏名"
+                                        ></div>
+                                    </div>
+
+                                    <div class="field-group">
+                                        <span class="field-label">Date of Birth</span>
+                                        <div
+                                            id="card-dob"
+                                            class="field-value field-mono is-empty"
+                                            data-placeholder="生年月日"
+                                        ></div>
+                                    </div>
+                                </div>
+
+                                <!-- Right: photo + dates -->
+                                <div class="card-right">
+                                    <div class="photo-area" aria-label="Photo area">
+                                        <svg
+                                            class="face-silhouette"
+                                            viewBox="0 0 100 130"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                fill="rgba(148,146,172,0.48)"
+                                                d="M50 4 C33 4 20 17 20 35 C20 53 33 66 50 66 C67 66 80 53 80 35 C80 17 67 4 50 4 Z M50 72 C24 72 2 83 2 100 L2 126 L98 126 L98 100 C98 83 76 72 50 72 Z"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div class="date-group">
+                                        <div class="field-group field-group--compact">
+                                            <span class="field-label">Enrollment Date</span>
+                                            <div
+                                                id="card-enrollment"
+                                                class="field-value field-mono is-empty"
+                                                data-placeholder="入学年月日"
+                                            ></div>
+                                        </div>
+
+                                        <div class="field-group field-group--compact">
+                                            <span class="field-label">Valid Until</span>
+                                            <div
+                                                id="card-valid-until"
+                                                class="field-value field-mono is-empty"
+                                                data-placeholder="有効期限"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Export button -->
+                    <div class="export-area">
+                        <button id="export-btn" class="export-btn" type="button">
+                            <svg
+                                class="btn-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            画像をダウンロード
+                        </button>
+                    </div>
+                </section>
             </main>
         </div>
 

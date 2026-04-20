@@ -13,18 +13,15 @@
     --accent-red: #c0392b;
     --accent-red-light: #e74c3c;
     --bg-page: #f7f3ee;
-    --bg-surface: #ede9e1;
     --text-primary: #1a1a2e;
-    --text-secondary: #555570;
-    --text-placeholder: rgba(130, 128, 155, 0.5);
+    --text-secondary: #6b6880;
+    --text-placeholder: rgba(130, 128, 155, 0.55);
     --card-bg: #f5f4ef;
     --card-border: #d8d4c8;
     --card-text-dark: #1a1a2e;
-    --card-text-mid: #2e2e4a;
     --card-label-color: #555570;
     --card-field-underline: #b0aec8;
-    --card-divider: #c0392b;
-    --shadow-glow: 0 0 40px rgba(192, 57, 43, 0.12);
+    --shadow-glow: 0 0 32px rgba(192, 57, 43, 0.1);
     --font-ui: 'Inter', sans-serif;
     --font-serif: 'Noto Serif', serif;
 }
@@ -39,8 +36,6 @@ body {
     background-color: var(--bg-page);
     color: var(--text-primary);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     line-height: 1.5;
 }
 
@@ -52,8 +47,8 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 48px 24px 80px;
-    gap: 40px;
+    padding: 40px 24px 72px;
+    gap: 32px;
 }
 
 .page-header {
@@ -62,7 +57,7 @@ body {
 }
 
 .page-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text-primary);
@@ -71,22 +66,144 @@ body {
     line-height: 1.3;
 }
 
-.page-subtitle {
-    margin-top: 8px;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
 /* ===========================
-   Card Section
+   App Layout (2-column)
 =========================== */
-.card-section {
+.app-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    max-width: 1080px;
     animation: fadeUp 0.7s 0.1s ease both;
 }
 
-/* スケーリング用ラッパー: 実際の表示サイズを持ち、カードをscaleで縮小する */
+/* ===========================
+   Form Panel
+=========================== */
+.form-panel {
+    flex: 0 0 320px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.07),
+        0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e8e4da;
+}
+
+.form-panel-header {
+    background: var(--accent-red);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+}
+
+.form-section {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid #f0ece4;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    margin-bottom: 14px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--card-label-color);
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+}
+
+.form-hint {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 9px 11px;
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+    color: var(--card-text-dark);
+    background: #faf9f7;
+    border: 1.5px solid #ddd9d0;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.18s, background 0.18s;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus {
+    border-color: var(--accent-red);
+    background: #fff;
+}
+
+.form-input--mono {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.06em;
+}
+
+/* select カスタム矢印 */
+.form-select-wrapper {
+    position: relative;
+}
+
+.form-select-wrapper::after {
+    content: '▾';
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--card-label-color);
+    pointer-events: none;
+    font-size: 0.82rem;
+}
+
+/* ===========================
+   Preview Panel
+=========================== */
+.preview-panel {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===========================
+   Card Scaling
+=========================== */
 .card-scaling-wrapper {
-    width: min(680px, 92vw);
+    width: 100%;
     aspect-ratio: 680 / 460;
     position: relative;
 }
@@ -98,8 +215,8 @@ body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.3),
-        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 4px 6px rgba(0, 0, 0, 0.25),
+        0 16px 48px rgba(0, 0, 0, 0.2),
         var(--shadow-glow),
         inset 0 1px 0 rgba(255, 255, 255, 0.6);
     border: 1px solid var(--card-border);
@@ -124,7 +241,6 @@ body {
     position: relative;
 }
 
-/* 大きな赤い「C」ロゴ */
 .university-emblem {
     font-family: var(--font-serif);
     font-size: 3rem;
@@ -145,7 +261,6 @@ body {
     flex: 1;
 }
 
-/* 右上の「STUDENT ID CARD」テキスト */
 .card-type-label {
     font-size: 0.55rem;
     font-weight: 600;
@@ -173,7 +288,7 @@ body {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 0;
-    padding: 22px 28px 24px;
+    padding: 18px 24px 20px;
     flex: 1;
     overflow: hidden;
 }
@@ -185,7 +300,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-right: 24px;
+    padding-right: 20px;
 }
 
 .field-group {
@@ -211,24 +326,21 @@ body {
     font-weight: 500;
     color: var(--card-text-dark);
     min-height: 1.4em;
-    outline: none;
     border-bottom: 1px solid var(--card-field-underline);
     padding: 2px 0;
-    transition:
-        border-color 0.2s,
-        background 0.2s;
 }
 
-.field-value:focus {
-    border-bottom-color: var(--accent-red);
-    background: rgba(192, 57, 43, 0.03);
-}
-
+/* 空フィールドのプレースホルダー */
 .field-value.is-empty::before {
     content: attr(data-placeholder);
     color: var(--text-placeholder);
-    pointer-events: none;
     font-weight: 400;
+    font-style: italic;
+}
+
+/* エクスポート時はプレースホルダーを非表示 */
+.exporting .field-value.is-empty::before {
+    display: none;
 }
 
 .field-mono {
@@ -250,21 +362,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    min-width: 140px;
+    gap: 14px;
+    min-width: 130px;
 }
 
 .photo-area {
-    width: 100px;
-    height: 126px;
+    width: 96px;
+    height: 120px;
     background: rgba(180, 178, 200, 0.15);
     border: 1.5px dashed rgba(160, 158, 185, 0.45);
     border-radius: 6px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 6px;
+    justify-content: center;
     overflow: hidden;
     position: relative;
 }
@@ -274,17 +384,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 90%;
-}
-
-.photo-label {
-    font-size: 0.55rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    color: rgba(130, 128, 155, 0.65);
-    text-transform: uppercase;
-    position: relative;
-    z-index: 1;
+    height: 100%;
 }
 
 .date-group {
@@ -300,53 +400,54 @@ body {
 .export-area {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    animation: fadeUp 0.7s 0.2s ease both;
-    padding-top: 20px;
+    align-items: flex-start;
 }
 
 .export-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 14px 36px;
+    padding: 13px 32px;
     background: linear-gradient(135deg, var(--accent-red) 0%, #a93226 100%);
     color: #fff;
     font-family: var(--font-ui);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     box-shadow:
-        0 4px 16px rgba(192, 57, 43, 0.45),
+        0 4px 14px rgba(192, 57, 43, 0.4),
         0 1px 0 rgba(255, 255, 255, 0.1) inset;
     transition:
         transform 0.15s,
-        box-shadow 0.15s,
-        background 0.2s;
+        box-shadow 0.15s;
 }
 
 .export-btn:hover {
-    background: linear-gradient(135deg, #d44035 0%, var(--accent-red) 100%);
     transform: translateY(-2px);
     box-shadow:
-        0 8px 24px rgba(192, 57, 43, 0.55),
+        0 8px 22px rgba(192, 57, 43, 0.5),
         0 1px 0 rgba(255, 255, 255, 0.12) inset;
 }
 
 .export-btn:active {
     transform: translateY(0);
     box-shadow:
-        0 2px 8px rgba(192, 57, 43, 0.35),
+        0 2px 8px rgba(192, 57, 43, 0.3),
         0 1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 
+.export-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .btn-icon {
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
     flex-shrink: 0;
 }
 
@@ -356,7 +457,7 @@ body {
 @keyframes fadeDown {
     from {
         opacity: 0;
-        transform: translateY(-16px);
+        transform: translateY(-14px);
     }
     to {
         opacity: 1;
@@ -367,7 +468,7 @@ body {
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(16px);
+        transform: translateY(14px);
     }
     to {
         opacity: 1;
@@ -375,5 +476,21 @@ body {
     }
 }
 
-/* カードは680px固定サイズ + JS transform:scale() で縮小するため
-   メディアクエリによる内部レイアウト変更は不要 */
+/* ===========================
+   Responsive — 縦積み
+=========================== */
+@media (max-width: 860px) {
+    .app-layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-panel {
+        flex: none;
+        width: 100%;
+    }
+
+    .export-area {
+        align-items: center;
+    }
+}

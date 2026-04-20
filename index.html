@@ -4,7 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>中央大学 学生証画像ジェネレータ - v76nl</title>
-        <meta name="description" content="中央大学の英語版学生証画像を生成するツール" />
+        <meta
+            name="description"
+            content="中央大学の英語版学生証画像を生成するツール"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -28,7 +31,9 @@
                         <h2 class="form-section-title">所属</h2>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-faculty">学部</label>
+                            <label class="form-label" for="input-faculty"
+                                >学部</label
+                            >
                             <div class="form-select-wrapper">
                                 <select class="form-select" id="input-faculty">
                                     <option value="">選択してください</option>
@@ -37,15 +42,23 @@
                                     <option value="商学部">商学部</option>
                                     <option value="理工学部">理工学部</option>
                                     <option value="文学部">文学部</option>
-                                    <option value="総合政策学部">総合政策学部</option>
-                                    <option value="国際経営学部">国際経営学部</option>
-                                    <option value="国際情報学部">国際情報学部</option>
+                                    <option value="総合政策学部">
+                                        総合政策学部
+                                    </option>
+                                    <option value="国際経営学部">
+                                        国際経営学部
+                                    </option>
+                                    <option value="国際情報学部">
+                                        国際情報学部
+                                    </option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-department">学科</label>
+                            <label class="form-label" for="input-department"
+                                >学科</label
+                            >
                             <input
                                 class="form-input"
                                 type="text"
@@ -59,7 +72,9 @@
                         <h2 class="form-section-title">個人情報</h2>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-student-id">学籍番号</label>
+                            <label class="form-label" for="input-student-id"
+                                >学籍番号</label
+                            >
                             <input
                                 class="form-input form-input--mono"
                                 type="text"
@@ -70,8 +85,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-name">氏名（英語表記）</label>
-                            <p class="form-hint">姓をすべて大文字、名を頭文字のみ大文字で</p>
+                            <label class="form-label" for="input-name"
+                                >氏名（英語表記）</label
+                            >
+                            <p class="form-hint">
+                                姓をすべて大文字、名を頭文字のみ大文字で
+                            </p>
                             <input
                                 class="form-input"
                                 type="text"
@@ -81,8 +100,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-dob">生年月日</label>
-                            <input class="form-input" type="date" id="input-dob" />
+                            <label class="form-label" for="input-dob"
+                                >生年月日</label
+                            >
+                            <input
+                                class="form-input"
+                                type="date"
+                                id="input-dob"
+                            />
                         </div>
                     </div>
 
@@ -90,13 +115,25 @@
                         <h2 class="form-section-title">在籍情報</h2>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-enrollment">入学年月日</label>
-                            <input class="form-input" type="date" id="input-enrollment" />
+                            <label class="form-label" for="input-enrollment"
+                                >入学年月日</label
+                            >
+                            <input
+                                class="form-input"
+                                type="date"
+                                id="input-enrollment"
+                            />
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="input-valid-until">有効期限</label>
-                            <input class="form-input" type="date" id="input-valid-until" />
+                            <label class="form-label" for="input-valid-until"
+                                >有効期限</label
+                            >
+                            <input
+                                class="form-input"
+                                type="date"
+                                id="input-valid-until"
+                            />
                         </div>
                     </div>
                 </section>
@@ -107,9 +144,18 @@
                         <div class="card-container" id="id-card">
                             <!-- University Name (fixed) -->
                             <div class="card-university-block">
-                                <div class="university-emblem" aria-hidden="true">C</div>
-                                <div class="university-name">Chuo University</div>
-                                <div class="card-type-label">STUDENT ID CARD</div>
+                                <div
+                                    class="university-emblem"
+                                    aria-hidden="true"
+                                >
+                                    C
+                                </div>
+                                <div class="university-name">
+                                    Chuo University
+                                </div>
+                                <div class="card-type-label">
+                                    STUDENT ID CARD
+                                </div>
                             </div>
 
                             <!-- Red divider line -->
@@ -120,7 +166,6 @@
                                 <!-- Left: student info fields -->
                                 <div class="card-left">
                                     <div class="field-group">
-                                        <span class="field-label">Faculty</span>
                                         <div
                                             id="card-faculty"
                                             class="field-value is-empty"
@@ -129,7 +174,6 @@
                                     </div>
 
                                     <div class="field-group">
-                                        <span class="field-label">Department</span>
                                         <div
                                             id="card-department"
                                             class="field-value is-empty"
@@ -137,8 +181,10 @@
                                         ></div>
                                     </div>
 
-                                    <div class="field-group">
-                                        <span class="field-label">Student ID</span>
+                                    <div class="field-group field-group--horizontal">
+                                        <span class="field-label"
+                                            >Student ID</span
+                                        >
                                         <div
                                             id="card-student-id"
                                             class="field-value field-mono is-empty"
@@ -146,7 +192,7 @@
                                         ></div>
                                     </div>
 
-                                    <div class="field-group">
+                                    <div class="field-group field-group--horizontal">
                                         <span class="field-label">Name</span>
                                         <div
                                             id="card-name"
@@ -155,8 +201,10 @@
                                         ></div>
                                     </div>
 
-                                    <div class="field-group">
-                                        <span class="field-label">Date of Birth</span>
+                                    <div class="field-group field-group--horizontal">
+                                        <span class="field-label"
+                                            >Date of Birth</span
+                                        >
                                         <div
                                             id="card-dob"
                                             class="field-value field-mono is-empty"
@@ -167,7 +215,10 @@
 
                                 <!-- Right: photo + dates -->
                                 <div class="card-right">
-                                    <div class="photo-area" aria-label="Photo area">
+                                    <div
+                                        class="photo-area"
+                                        aria-label="Photo area"
+                                    >
                                         <svg
                                             class="face-silhouette"
                                             viewBox="0 0 100 130"
@@ -182,8 +233,12 @@
                                     </div>
 
                                     <div class="date-group">
-                                        <div class="field-group field-group--compact">
-                                            <span class="field-label">Enrollment Date</span>
+                                        <div
+                                            class="field-group field-group--compact"
+                                        >
+                                            <span class="field-label"
+                                                >Enrollment Date</span
+                                            >
                                             <div
                                                 id="card-enrollment"
                                                 class="field-value field-mono is-empty"
@@ -191,8 +246,12 @@
                                             ></div>
                                         </div>
 
-                                        <div class="field-group field-group--compact">
-                                            <span class="field-label">Valid Until</span>
+                                        <div
+                                            class="field-group field-group--compact"
+                                        >
+                                            <span class="field-label"
+                                                >Valid Until</span
+                                            >
                                             <div
                                                 id="card-valid-until"
                                                 class="field-value field-mono is-empty"
@@ -207,7 +266,11 @@
 
                     <!-- Export button -->
                     <div class="export-area">
-                        <button id="export-btn" class="export-btn" type="button">
+                        <button
+                            id="export-btn"
+                            class="export-btn"
+                            type="button"
+                        >
                             <svg
                                 class="btn-icon"
                                 viewBox="0 0 24 24"
@@ -216,7 +279,9 @@
                                 stroke-width="2"
                                 aria-hidden="true"
                             >
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <path
+                                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                />
                                 <polyline points="7 10 12 15 17 10" />
                                 <line x1="12" y1="15" x2="12" y2="3" />
                             </svg>

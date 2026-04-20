@@ -156,7 +156,9 @@ body {
     border: 1.5px solid #ddd9d0;
     border-radius: 6px;
     outline: none;
-    transition: border-color 0.18s, background 0.18s;
+    transition:
+        border-color 0.18s,
+        background 0.18s;
     appearance: none;
     -webkit-appearance: none;
 }
@@ -262,7 +264,7 @@ body {
 }
 
 .card-type-label {
-    font-size: 0.55rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.2em;
     color: var(--card-label-color);
@@ -311,6 +313,23 @@ body {
 
 .field-group--compact {
     gap: 1px;
+}
+
+.field-group--horizontal {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.field-group--horizontal .field-label {
+    flex-basis: 104px;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+
+.field-group--horizontal .field-value {
+    flex: 1;
+    min-width: 0;
 }
 
 .field-label {
@@ -363,12 +382,12 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    min-width: 130px;
+    min-width: 170px;
 }
 
 .photo-area {
-    width: 96px;
-    height: 120px;
+    width: 168px;
+    height: 210px;
     background: rgba(180, 178, 200, 0.15);
     border: 1.5px dashed rgba(160, 158, 185, 0.45);
     border-radius: 6px;

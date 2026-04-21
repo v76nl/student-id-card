@@ -106,7 +106,7 @@ const FACULTY_MAP = {
     }
 };
 
-// --- 追加: プルダウンの自動生成と連動 ---
+// プルダウンの自動生成と連動
 const facultyInput = document.getElementById('input-faculty');
 const departmentInput = document.getElementById('input-department');
 
@@ -147,7 +147,6 @@ initFacultySelect();
 if (facultyInput) {
     facultyInput.addEventListener('change', updateDepartmentSelect);
 }
-// ----------------------------------------
 
 // カードのスケーリング処理
 const CARD_WIDTH = 680;

@@ -177,12 +177,18 @@ function setCardField(id, text) {
     }
 }
 
-// 日付文字列（YYYY-MM-DD）を「YYYY / MM / DD」形式に変換
+// 日付文字列（YYYY-MM-DD）を「JAN 01 2001」形式に変換
 function formatDate(dateStr) {
     if (!dateStr) return '';
     const parts = dateStr.split('-');
     if (parts.length !== 3) return dateStr;
-    return `${parts[0]} / ${parts[1]} / ${parts[2]}`;
+    
+    const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const year = parts[0];
+    const month = monthNames[parseInt(parts[1]) - 1];
+    const day = parts[2];
+    
+    return `${month} ${day} ${year}`;
 }
 
 // フォーム → カード 同期

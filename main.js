@@ -1,13 +1,79 @@
-// 学部 日本語 → 英語 マッピング（中央大学）
+// 学部 日本語 → 英語 マッピング
 const FACULTY_MAP = {
-    '法学部': 'Faculty of Law',
-    '経済学部': 'Faculty of Economics',
-    '商学部': 'Faculty of Commerce',
-    '理工学部': 'Faculty of Science and Engineering',
-    '文学部': 'Faculty of Letters',
-    '総合政策学部': 'Faculty of Policy Studies',
-    '国際経営学部': 'Faculty of Global Management',
-    '国際情報学部': 'Faculty of Global Informatics',
+    '法学部': {
+        en: 'Faculty of Law',
+        departments: {
+            '法律学科': 'Department of Law',
+            '政治学科': 'Department of Political Science',
+            '国際企業関係法学科': 'Department of International Law and Business'
+        }
+    },
+    '経済学部': {
+        en: 'Faculty of Economics',
+        departments: {
+            '経済学科': 'Department of Economics',
+            '経済情報システム学科': 'Department of Economic Systems and Information Analysis',
+            '国際経済学科': 'Department of International Economics',
+            '公共・環境経済学科': 'Department of Public and Environmental Economics',
+        }
+    },
+    '商学部': {
+        en: 'Faculty of Commerce',
+        departments: {
+            '経営学科': 'Department of Business Administration',
+            '会計学科': 'Department of Accounting',
+            '国際マーケティング学科': 'Department of Marketing and International Trade',
+            '金融学科': 'Department of Banking and Corporate Finance'
+        }
+    },
+    '理工学部 (25年度以前入学者)': {
+        en: 'Faculty of Science and Engineering',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '基幹理工学部 (26年度以後入学者)': {
+        en: 'Faculty of Science and Engineering',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '社会理工学部 (26年度以後入学者)': {
+        en: 'Faculty of Science and Engineering',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '先進理工学部': {
+        en: 'Faculty of Science and Engineering',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '文学部': {
+        en: 'Faculty of Letters',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '総合政策学部': {
+        en: 'Faculty of Policy Studies',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '国際経営学部': {
+        en: 'Faculty of Global Management',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
+    '国際情報学部': {
+        en: 'Faculty of Global Informatics',
+        departments: {
+            '学科': 'Department of ',
+        }
+    },
 };
 
 // カードのスケーリング処理

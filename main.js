@@ -69,7 +69,20 @@ const FACULTY_MAP = {
     '文学部': {
         en: 'Faculty of Letters',
         departments: {
-            '人文社会学科': 'Department of Humanities and Social Sciences'
+            '国文学専攻': 'Department of Japanese Literature',
+            '英語文学文化専攻': 'Department of English Studies',
+            'ドイツ語文学文化専攻': 'Department of German Studies',
+            'フランス語文学文化専攻': 'Department of French Studies',
+            '中国言語文化専攻': 'Department of Chinese Studies',
+            '日本史学専攻': 'Department of Japanese History',
+            '東洋史学専攻': 'Department of Asian and African History',
+            '西洋史学専攻': 'Department of European and American History',
+            '哲学専攻': 'Department of Philosophy',
+            '社会学専攻': 'Department of Sociology',
+            '社会情報学専攻': 'Department of Socio-Informatics',
+            '教育学専攻': 'Department of Education',
+            '心理学専攻': 'Department of Psychology',
+            '学びのパスポートプログラム': 'Interdisciplinary Studies Program'
         }
     },
     '総合政策学部': {

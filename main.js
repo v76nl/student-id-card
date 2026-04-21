@@ -136,6 +136,11 @@ function updateDepartmentSelect() {
             option.textContent = dept;
             departmentInput.appendChild(option);
         });
+        
+        // 学科が1つだけの場合は自動で選択する
+        if (departments.length === 1) {
+            departmentInput.value = departments[0];
+        }
     }
 
     // 学科のプルダウン内容が変わったため、カード側の学科表示も連動して更新させる

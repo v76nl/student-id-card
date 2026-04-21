@@ -58,7 +58,7 @@ const FACULTY_MAP = {
             '人間総合理工学科': 'Department of Integrated Sciences and Engineering for Sustainable Societies'
         }
     },
-    '先進理工学部': {
+    '先進理工学部 (26年度以後入学者)': {
         en: 'Faculty of Advanced Science and Engineering',
         departments: {
             '精密機械工学科': 'Department of Precision Mechanics',
@@ -106,12 +106,56 @@ const FACULTY_MAP = {
     }
 };
 
+// --- 追加: プルダウンの自動生成と連動 ---
+const facultyInput = document.getElementById('input-faculty');
+const departmentInput = document.getElementById('input-department');
+
+// 学部プルダウンの初期化
+function initFacultySelect() {
+    if (!facultyInput) return;
+    facultyInput.innerHTML = '<option value="">学部を選択してください</option>';
+    Object.keys(FACULTY_MAP).forEach(faculty => {
+        const option = document.createElement('option');
+        option.value = faculty;
+        option.textContent = faculty;
+        facultyInput.appendChild(option);
+    });
+}
+
+// 学科プルダウンの更新（選択された学部に連動）
+function updateDepartmentSelect() {
+    if (!departmentInput || !facultyInput) return;
+    const selectedFaculty = facultyInput.value;
+    departmentInput.innerHTML = '<option value="">学科/専攻を選択してください</option>';
+    
+    if (selectedFaculty && FACULTY_MAP[selectedFaculty]) {
+        const departments = Object.keys(FACULTY_MAP[selectedFaculty].departments);
+        departments.forEach(dept => {
+            const option = document.createElement('option');
+            option.value = dept;
+            option.textContent = dept;
+            departmentInput.appendChild(option);
+        });
+    }
+
+    // 学科のプルダウン内容が変わったため、カード側の学科表示も連動して更新させる
+    departmentInput.dispatchEvent(new Event('change'));
+}
+
+// 初期化実行
+initFacultySelect();
+if (facultyInput) {
+    facultyInput.addEventListener('change', updateDepartmentSelect);
+}
+// ----------------------------------------
+
 // カードのスケーリング処理
 const CARD_WIDTH = 680;
 const cardWrapper = document.getElementById('card-scaling-wrapper');
 const card = document.getElementById('id-card');
 
 function scaleCard() {
+    if (!cardWrapper || !card) return;
     const scale = cardWrapper.clientWidth / CARD_WIDTH;
     card.style.transform = `scale(${scale})`;
 }
@@ -123,8 +167,10 @@ window.addEventListener('resize', scaleCard);
 function setCardField(id, text) {
     const el = document.getElementById(id);
     if (!el) return;
-    if (text && text.trim()) {
-        el.textContent = text.trim();
+    
+    const trimmedText = text?.trim() ?? '';
+    if (trimmedText) {
+        el.textContent = trimmedText;
         el.classList.remove('is-empty');
     } else {
         el.textContent = '';
@@ -135,83 +181,85 @@ function setCardField(id, text) {
 // 日付文字列（YYYY-MM-DD）を「YYYY / MM / DD」形式に変換
 function formatDate(dateStr) {
     if (!dateStr) return '';
-    const [y, m, d] = dateStr.split('-');
-    return `${y} / ${m} / ${d}`;
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    return `${parts[0]} / ${parts[1]} / ${parts[2]}`;
 }
 
 // フォーム → カード 同期
-document.getElementById('input-faculty').addEventListener('change', (e) => {
-    const english = FACULTY_MAP[e.target.value] || '';
-    setCardField('card-faculty', english);
-});
+const formSyncMappings = [
+    { inputId: 'input-faculty', cardId: 'card-faculty', event: 'change', transform: (val) => {
+        if (departmentInput) departmentInput.dispatchEvent(new Event('change')); // 学部変更時に学科の表示もリセット・再評価
+        return FACULTY_MAP[val]?.en || '';
+    } },
+    { inputId: 'input-department', cardId: 'card-department', event: 'change', transform: (val) => {
+        const faculty = document.getElementById('input-faculty')?.value;
+        return FACULTY_MAP[faculty]?.departments?.[val] || val;
+    } },
+    { inputId: 'input-student-id', cardId: 'card-student-id', event: 'input' },
+    { inputId: 'input-name', cardId: 'card-name', event: 'input' },
+    { inputId: 'input-dob', cardId: 'card-dob', event: 'change', transform: formatDate },
+    { inputId: 'input-enrollment', cardId: 'card-enrollment', event: 'change', transform: formatDate },
+    { inputId: 'input-valid-until', cardId: 'card-valid-until', event: 'change', transform: formatDate }
+];
 
-document.getElementById('input-department').addEventListener('input', (e) => {
-    setCardField('card-department', e.target.value);
-});
-
-document.getElementById('input-student-id').addEventListener('input', (e) => {
-    setCardField('card-student-id', e.target.value);
-});
-
-document.getElementById('input-name').addEventListener('input', (e) => {
-    setCardField('card-name', e.target.value);
-});
-
-document.getElementById('input-dob').addEventListener('change', (e) => {
-    setCardField('card-dob', formatDate(e.target.value));
-});
-
-document.getElementById('input-enrollment').addEventListener('change', (e) => {
-    setCardField('card-enrollment', formatDate(e.target.value));
-});
-
-document.getElementById('input-valid-until').addEventListener('change', (e) => {
-    setCardField('card-valid-until', formatDate(e.target.value));
+formSyncMappings.forEach(({ inputId, cardId, event, transform }) => {
+    document.getElementById(inputId)?.addEventListener(event, (e) => {
+        const value = transform ? transform(e.target.value) : e.target.value;
+        setCardField(cardId, value);
+    });
 });
 
 // 画像出力
 const exportBtn = document.getElementById('export-btn');
 
-exportBtn.addEventListener('click', async () => {
-    const studentId = document.getElementById('input-student-id').value.trim() || 'UNKNOWN';
+if (exportBtn) {
+    exportBtn.addEventListener('click', async () => {
+        const studentIdInput = document.getElementById('input-student-id');
+        const studentId = studentIdInput?.value.trim() || 'UNKNOWN';
 
-    exportBtn.disabled = true;
-    exportBtn.textContent = 'エクスポート中…';
+        exportBtn.disabled = true;
+        exportBtn.textContent = 'エクスポート中…';
 
-    // エクスポート中はプレースホルダーを非表示
-    document.body.classList.add('exporting');
+        // エクスポート中はプレースホルダーを非表示
+        document.body.classList.add('exporting');
 
-    try {
-        const canvas = await html2canvas(card, {
-            scale: 3,
-            useCORS: true,
-            backgroundColor: null,
-            logging: false,
-        });
+        // エクスポート用のスケールリセット（画像が見切れないようにするため）
+        card.style.transform = 'scale(1)';
 
-        const timestamp = formatTimestamp(new Date());
-        const filename = `${sanitize(studentId)}_${timestamp}.png`;
+        try {
+            const canvas = await html2canvas(card, {
+                scale: 3,
+                useCORS: true,
+                backgroundColor: null,
+                logging: false,
+            });
 
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-    } catch (err) {
-        console.error('Export failed:', err);
-        alert('エクスポートに失敗しました。もう一度お試しください。');
-    } finally {
-        document.body.classList.remove('exporting');
-        exportBtn.disabled = false;
-        exportBtn.innerHTML = `
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            画像をダウンロード
-        `;
-    }
-});
+            const timestamp = formatTimestamp(new Date());
+            const filename = `${sanitize(studentId)}_${timestamp}.png`;
+
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        } catch (err) {
+            console.error('Export failed:', err);
+            alert('エクスポートに失敗しました。もう一度お試しください。');
+        } finally {
+            document.body.classList.remove('exporting');
+            exportBtn.disabled = false;
+            exportBtn.innerHTML = `
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                画像をダウンロード
+            `;
+            scaleCard();
+        }
+    });
+}
 
 // YYYYMMDD_HHmmss 形式のタイムスタンプ生成
 function formatTimestamp(date) {

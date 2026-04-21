@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>中央大学 学生証画像ジェネレータ - v76nl</title>
+        <title>中央大学 学生証画像ジェネレータ - wash@v76nl</title>
         <meta
             name="description"
             content="中央大学の英語版学生証画像を生成するツール"
@@ -27,7 +27,7 @@
                 <section class="form-panel" aria-label="入力フォーム">
                     <div class="form-panel-header">入力フォーム</div>
 
-                    <div class="form-section">
+                                        <div class="form-section">
                         <h2 class="form-section-title">所属</h2>
 
                         <div class="form-group">
@@ -36,35 +36,20 @@
                             >
                             <div class="form-select-wrapper">
                                 <select class="form-select" id="input-faculty">
-                                    <option value="">選択してください</option>
-                                    <option value="法学部">法学部</option>
-                                    <option value="経済学部">経済学部</option>
-                                    <option value="商学部">商学部</option>
-                                    <option value="理工学部">理工学部</option>
-                                    <option value="文学部">文学部</option>
-                                    <option value="総合政策学部">
-                                        総合政策学部
-                                    </option>
-                                    <option value="国際経営学部">
-                                        国際経営学部
-                                    </option>
-                                    <option value="国際情報学部">
-                                        国際情報学部
-                                    </option>
+                                    <!-- JSで動的に生成 -->
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label" for="input-department"
-                                >学科</label
+                                >学科/専攻</label
                             >
-                            <input
-                                class="form-input"
-                                type="text"
-                                id="input-department"
-                                placeholder="例: Dept. of Computer Science"
-                            />
+                            <div class="form-select-wrapper">
+                                <select class="form-select" id="input-department">
+                                    <!-- JSで動的に生成 -->
+                                </select>
+                            </div>
                         </div>
                     </div>
 

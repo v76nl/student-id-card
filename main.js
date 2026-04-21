@@ -14,7 +14,7 @@ const FACULTY_MAP = {
             '経済学科': 'Department of Economics',
             '経済情報システム学科': 'Department of Economic Systems and Information Analysis',
             '国際経済学科': 'Department of International Economics',
-            '公共・環境経済学科': 'Department of Public and Environmental Economics',
+            '公共・環境経済学科': 'Department of Public and Environmental Economics'
         }
     },
     '商学部': {
@@ -29,51 +29,68 @@ const FACULTY_MAP = {
     '理工学部 (25年度以前入学者)': {
         en: 'Faculty of Science and Engineering',
         departments: {
-            '学科': 'Department of ',
+            '数学科': 'Department of Mathematics',
+            '物理学科': 'Department of Physics',
+            '都市環境学科': 'Department of Civil and Environmental Engineering',
+            '精密機械工学科': 'Department of Precision Mechanics',
+            '電気電子情報通信工学科': 'Department of Electrical, Electronic, and Communication Engineering',
+            '応用化学科': 'Department of Applied Chemistry',
+            'ビジネスデータサイエンス学科': 'Department of Data Science for Business Innovation',
+            '情報工学科': 'Department of Information and System Engineering',
+            '生命科学科': 'Department of Biological Sciences',
+            '人間総合理工学科': 'Department of Integrated Sciences and Engineering for Sustainable Societies'
         }
     },
     '基幹理工学部 (26年度以後入学者)': {
-        en: 'Faculty of Science and Engineering',
+        en: 'Faculty of Fundamental Science and Engineering',
         departments: {
-            '学科': 'Department of ',
+            '数学科': 'Department of Mathematics',
+            '物理学科': 'Department of Physics',
+            '応用化学科': 'Department of Applied Chemistry',
+            '生命科学科': 'Department of Biological Sciences'
         }
     },
     '社会理工学部 (26年度以後入学者)': {
-        en: 'Faculty of Science and Engineering',
+        en: 'Faculty of Science, Engineering and Society',
         departments: {
-            '学科': 'Department of ',
+            '都市環境学科': 'Department of Civil and Environmental Engineering',
+            'ビジネスデータサイエンス学科': 'Department of Data Science for Business Innovation',
+            '人間総合理工学科': 'Department of Integrated Sciences and Engineering for Sustainable Societies'
         }
     },
     '先進理工学部': {
-        en: 'Faculty of Science and Engineering',
+        en: 'Faculty of Advanced Science and Engineering',
         departments: {
-            '学科': 'Department of ',
+            '精密機械工学科': 'Department of Precision Mechanics',
+            '電気電子情報通信工学科': 'Department of Electrical, Electronic, and Communication Engineering',
+            '情報工学科': 'Department of Information and System Engineering'
         }
     },
     '文学部': {
         en: 'Faculty of Letters',
         departments: {
-            '学科': 'Department of ',
+            '人文社会学科': 'Department of Humanities and Social Sciences'
         }
     },
     '総合政策学部': {
         en: 'Faculty of Policy Studies',
         departments: {
-            '学科': 'Department of ',
+            '政策科学科': 'Department of Policy Sciences',
+            '国際政策文化学科': 'Department of Cross-Cultural Studies'
         }
     },
     '国際経営学部': {
         en: 'Faculty of Global Management',
         departments: {
-            '学科': 'Department of ',
+            '国際経営学科': 'Department of Global Management'
         }
     },
     '国際情報学部': {
         en: 'Faculty of Global Informatics',
         departments: {
-            '学科': 'Department of ',
+            '国際情報学科': 'Department of Global Informatics'
         }
-    },
+    }
 };
 
 // カードのスケーリング処理
